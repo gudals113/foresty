@@ -3,7 +3,6 @@ require('dotenv').config();
 // const mongo_config=require("mongo_config");
 // DEPENDENCIES
 const express = require('express');
-const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -32,6 +31,17 @@ mongoose.set('useCreateIndex', true)
 
 //CORS ALLOW    나중에는 사용방법 바꿔야 할 듯
 //app.use(cors())
+var http=require('http');
+var https=require('https');
+var fs=require('fs');
+var options={
+  key:fs.readFileSync('key.pem'),
+  cert:fs.readFileSync('cert.pem')
+};
+var port1=80;
+var port2=443;
+
+const app = express();
 app.use(cors({
   origin: true,
   credentials: true
@@ -43,7 +53,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 //Cookie-parser
 app.use(cookieParser());
-
+http.createServer(app).listen(port1, function(){
+  console.log("Http server listening on port " + port1);
+});
+https.createServer(options, app).listen(port2, function(){
+  console.log("Https server listening on port " + port2);
+});
 
 //CONFIGURE ROUTER
 app.get('/', (req, res) => {
@@ -58,4 +73,4 @@ app.use('/image', imageRouter)
 app.use('/search',searchRouter)
 app.use('/techTree', techTreeRouter)
 
-app.listen(port, () => console.log(`Server listening on port ${port}`));
+// app.listen(port, () => console.log(`Server listening on port ${port}`));

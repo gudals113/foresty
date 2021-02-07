@@ -121,3 +121,5 @@ awsconfig.json
 
 #pem
 tect.pem
+
+mongo_config.json
