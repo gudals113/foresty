@@ -28,7 +28,8 @@ router.post('/', async (req, res) => {
   post.title = req.body.title;
   post.content = req.body.content;
   post.hashtags = req.body.hashtags;
-  
+  post.anoymity = req.body.anoymity;
+
   //Question DB에 저장
   post.save((err, result) => {
     if (err) {
@@ -59,7 +60,7 @@ router.get('/page/:page', async (req, res) => {
       $lookup: {
         from: 'users',
         localField: '_id',
-        foreignField: 'posts',
+        foreignField: 'posts.question',
         as: 'author'
       }
     },
@@ -102,6 +103,7 @@ router.get('/page/:page', async (req, res) => {
   .limit(10)
   .exec()
   
+
   var questionSum = await Question.find().countDocuments()
   res.send({questionSum: questionSum, question : questions})
 })
@@ -138,8 +140,13 @@ router.get('/likepage/:page', async (req, res) => {
     },
     {
       $project:{
-        "author.displayName":1,
-        "author.points":1,
+        anonymity:1,
+        // "author.displayName":1,
+        "displayName": 
+          {
+            $cond: {if:{$eq:["$anonymity", "false"]}, then:'익명' ,else:'$author.displayName'}
+          },
+        // "author.points":0,
         type:1,
         hashtags:1,
         like:1,
@@ -162,6 +169,8 @@ router.get('/likepage/:page', async (req, res) => {
   var questionSum = await Question.find().countDocuments()
   res.send({questionSum: questionSum, question : questions})
 })
+
+
 // questionID 이용해서 읽어오기
 router.get('/:questionID', async (req, res) => {
   var question, questionComments = {}
@@ -200,20 +209,23 @@ router.get('/:questionID', async (req, res) => {
 
 
 //Question 수정               
-router.put('/:questionID', (req, res) => {
-  Question.updateOne(
-    { _id: req.params.questionID },
-    {
-      $set: {
-        'title': req.body.title,
-        'content': req.body.content,
-        'hashtags': req.body.hashtags,
-      }
-    },
-    (err, result) => {
-      if (err) return res.json({ ERROR: "UPDATE FAILURE", err })
-      res.json({ RESULT: "UPDATE SUCCEDD : ", result })
-    })
+router.put('/:questionID', async(req, res) => {
+  var objForUpdate={}
+  if (req.body.title) objForUpdate.title = req.body.title
+  if (req.body.hashtags) objForUpdate.hashtags = req.body.hashtags
+  if (req.body.content) objForUpdate.content = req.body.content
+  if (req.body.anoymity) objForUpdate.anoymity = req.body.anoymity
+  objForUpdate={$set:objForUpdate}
+  
+  try{
+    result= await Question.updateOne(
+      {_id:req.params.questionID},
+      objForUpdate
+    ).exec()
+    res.json(result.ok)
+  } catch(err){
+    res.json(err)
+  }
 })
 
 

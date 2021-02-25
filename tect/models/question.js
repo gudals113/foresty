@@ -16,6 +16,7 @@ const questionSchema = new Schema({
     //V.2021 01 27
     author:{type:mongoose.Schema.Types.ObjectId, ref:'User'},
 
+    anonymity:{type:Boolean, default:false}
 
     
     // authorName:{type:String, required:true},

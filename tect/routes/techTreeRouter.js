@@ -106,6 +106,7 @@ router.put('/:treeID', async(req, res)=>{
     if (req.body.nodeList) objForUpdate.nodeList = req.body.nodeList
     if (req.body.linkList) objForUpdate.linkList = req.body.linkList
     if (req.body.thumbnail) objForUpdate.thumbnail = req.body.thumbnail
+    if (req.body.public) objForUpdate.public = req.body.public
     objForUpdate={$set:objForUpdate}
 
     try{
