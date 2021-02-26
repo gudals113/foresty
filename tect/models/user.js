@@ -7,7 +7,7 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   firebaseUid:{type:String, required:true, unique:true},
   email:{type:String, required:true, unique:true, lowercase:true},
-  displayName:{type:String, required:true, unique:true},
+  displayName:{type:String, required:true},
   deleted:{type:Boolean, default:false},
   points:{type:Number, default:0},
   introduce:{type:String, default:"Hello World"},
