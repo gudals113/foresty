@@ -31,19 +31,23 @@ router.put('/update', async (req, res) => {
   MONGO_USER = await FIND_MONGO_USER_BY_UID(FIREBASE_USER.uid)
   MONGO_UID = MONGO_USER[0]._id
 
-  User.updateOne(
-    { _id: MONGO_UID },
-    {
-      $set: {
-        'displayName': req.body.displayname,
-        'point': req.body.point,
-        'introduce':req.body.point
-      }
-    },
-    (err, result) => {
-      if (err) return res.json({ ERROR: "UPDATE FAILURE", err })
-      res.json({ RESULT: "UPDATE SUCCEDD : ", result })
-    })
+  var objForUpdate={}
+  if (req.body.displayName) objForUpdate.displayName = req.body.displayName
+  if (req.body.point) objForUpdate.point = req.body.point
+  if (req.body.introduce) objForUpdate.introduce = req.body.introduce
+  objForUpdate={$set:objForUpdate}
+
+  try{
+    result=await User.updateOne(
+      {_id:MONGO_UID},
+      objForUpdate
+    ).exec()
+    res.json(result.ok)
+
+  } catch(err) {
+    res.json(err)
+  }
+
 })
 
 // router.delete('/:userID', async (req, res) => {
