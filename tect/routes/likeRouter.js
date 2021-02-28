@@ -55,7 +55,7 @@ router.put('/answer/:id',async(req,res)=>{
             }
             else{
                 Answer.findOneAndUpdate({_id:id},{$inc:{like:-1}}).exec();
-                Answer.findOneAndUpdate({_id:id},{$pull:{like_user:MONOGO_UID}}).exec();
+                Answer.findOneAndUpdate({_id:id},{$pull:{like_user:MONGO_UID}}).exec();
             }
             callback(null);
         }],
@@ -81,7 +81,7 @@ router.put('/questioncomments/:id',async(req,res)=>{
             }
             else{
                 QuestionComment.findOneAndUpdate({_id:id},{$inc:{like:-1}}).exec();
-                QuestionComment.findOneAndUpdate({_id:id},{$pull:{like_user:MONOGO_UID}}).exec();
+                QuestionComment.findOneAndUpdate({_id:id},{$pull:{like_user:MONGO_UID}}).exec();
             }
             callback(null);
         }],
@@ -106,7 +106,7 @@ router.put('/answercomments/:id',async(req,res)=>{
             }
             else{
                 AnswerComment.findOneAndUpdate({_id:id},{$inc:{like:-1}}).exec();
-                AnswerComment.findOneAndUpdate({_id:id},{$pull:{like_user:MONOGO_UID}}).exec();
+                AnswerComment.findOneAndUpdate({_id:id},{$pull:{like_user:MONGO_UID}}).exec();
             }
             callback(null);
         }],
@@ -131,7 +131,7 @@ router.put('/techtree/:id',async(req,res)=>{
             }
             else{
                 TechTree.findOneAndUpdate({_id:id},{$inc:{like:-1}}).exec();
-                TechTree.findOneAndUpdate({_id:id},{$pull:{like_user:MONOGO_UID}}).exec();
+                TechTree.findOneAndUpdate({_id:id},{$pull:{like_user:MONGO_UID}}).exec();
             }
             callback(null);
         }],

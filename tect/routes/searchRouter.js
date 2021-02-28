@@ -11,6 +11,7 @@ const { json } = require('body-parser');
 //검색
 router.get('/', async function(req, res){
     const {target,page}=req.query;
+    //정규식적용으로 중간에 있어도 검색가능, i 옵션은 대소문자 구별을 없애줌
     const query=new RegExp(target,'i');
     var offset = (page-1)*10
     var a;
