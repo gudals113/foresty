@@ -1,11 +1,26 @@
 # foresty
 
-#INTRODUCTION
+## INTRODUCTION
 
-foresty node serve
-Express + mongoDB
+Foresty는 개인 메모 작성 및 질문과 답변이 가능한 웹 애플리케이션입니다.
+Foresty의 백엔드 깃입니다.
 
-#SCREEN
+#개인 메모에 질문 및 댓글 기능은 현재 중지되었습니다.
+
+### Stack
+Node.js(Javascript), Express, mongoDB, mongoose, Firebase, AWS EC2
+
+## SCREEN
 ![image](https://user-images.githubusercontent.com/61488937/184534043-fb8e8d86-d6b7-4960-860b-bd74c4a7d56b.png)
+메인 화면
+![image](https://user-images.githubusercontent.com/61488937/184534259-c3526c9b-f621-40f8-ae75-7e1f81719dd9.png)
+로그인 화면
+![image](https://user-images.githubusercontent.com/61488937/184534264-ea7621d7-7d5f-4726-866f-b073232d7e6c.png)
+개인 메모 페이지
+![image](https://user-images.githubusercontent.com/61488937/184534276-eb8a32f7-fddf-49a3-8559-9379273d4602.png)
+메모 페이지 디테일 - (1)
+![image](https://user-images.githubusercontent.com/61488937/184534287-2a9242d2-b27c-457b-ab8e-843830a5c76d.png)
+메모 페이지 디테일 - (2)
 
-#ISSUE
+## ISSUE
+notion
