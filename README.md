@@ -1,6 +1,6 @@
 # foresty
 
-## INTRODUCTION
+## Introduction
 
 Foresty는 개인 메모 작성 및 질문과 답변이 가능한 웹 애플리케이션입니다.
 Foresty의 백엔드 깃입니다.
@@ -10,7 +10,7 @@ Foresty의 백엔드 깃입니다.
 ### Stack
 Node.js(Javascript), Express, mongoDB, mongoose, Firebase, AWS EC2
 
-## SCREEN
+## Screen
 #### 메인 화면
 ![image](https://user-images.githubusercontent.com/61488937/184534043-fb8e8d86-d6b7-4960-860b-bd74c4a7d56b.png)
 노드를 이용한 형태로 메모들을 관리할 수 있습니다. 기본 사용 설명이 메인 페이지에 등장합니다.
@@ -31,5 +31,5 @@ Node.js(Javascript), Express, mongoDB, mongoose, Firebase, AWS EC2
 ![image](https://user-images.githubusercontent.com/61488937/184534287-2a9242d2-b27c-457b-ab8e-843830a5c76d.png)
 노드를 누르면 메모를 작성할 수 있습니다.
 
-## ISSUE
-notion
+## Issue
+check notion
